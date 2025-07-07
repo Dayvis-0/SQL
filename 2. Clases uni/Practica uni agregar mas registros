@@ -1,0 +1,47 @@
+-- CLIENTE SIN FACTURA (para LEFT JOIN)
+INSERT INTO Clientes (Nombre, DNI, Direccion, Telefono, Email)
+VALUES ('Luis Quispe', '11112222', 'Av. Cusco 789', '999888777', 'luis@gmail.com');
+-- ClienteID = 3
+
+-- VENDEDOR SIN FACTURAS (para LEFT JOIN desde Vendedores)
+INSERT INTO Vendedores (Nombre, DNI, Telefono, Email)
+VALUES ('Pedro Huamán', '22223333', '912345000', 'pedro@empresa.com');
+-- VendedorID = 3
+
+-- CATEGORÍA SIN PRODUCTOS (para LEFT JOIN desde Categorías)
+INSERT INTO Categorias (Nombre, Descripcion)			
+VALUES ('Deportes', 'Artículos deportivos');
+-- CategoriaID = 3
+
+-- PRODUCTO SIN DETALLE DE FACTURA (para LEFT JOIN desde Productos)
+INSERT INTO Productos (Nombre, Descripcion, Precio, Stock, CategoriaID)
+VALUES ('Tablet Samsung', '10 pulgadas', 950.00, 15, 1);
+-- ProductoID = 4
+
+-- FACTURA NUEVA CON VARIOS DETALLES (para INNER JOIN)
+INSERT INTO Facturas (ClienteID, VendedorID, Fecha, Total)
+VALUES (1, 2, GETDATE(), 0);
+-- Supongamos que FacturaID = 3
+
+INSERT INTO DetalleFacturas (FacturaID, ProductoID, Cantidad, PrecioUnitario)
+VALUES 
+(3, 1, 2, 2500.00), -- Laptop Lenovo
+(3, 3, 1, 250.00);  -- Licuadora Oster
+
+-- Actualizar total de factura 3
+UPDATE Facturas
+SET Total = (
+    SELECT SUM(Subtotal) FROM DetalleFacturas WHERE FacturaID = 3
+)
+WHERE FacturaID = 3;
+
+-- FACTURA SIN DETALLES (para RIGHT JOIN con DetalleFacturas)
+INSERT INTO Facturas (ClienteID, VendedorID, Fecha, Total)
+VALUES (2, 1, GETDATE(), 0);
+-- FacturaID = 4 (no tiene detalle)
+
+-- PRODUCTO SIN CATEGORÍA (opcional, para ver cómo afecta el join)
+-- No se puede insertar producto sin categoría porque FK no lo permite,
+-- pero puedes usar una categoría dummy si lo deseas.
+
+-- CATEGORÍA SIN PRODUCTOS ya está cubierta arriba.
