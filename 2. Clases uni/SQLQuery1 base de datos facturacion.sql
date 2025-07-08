@@ -131,7 +131,6 @@ SET Total = (
 )
 WHERE FacturaID = 2;
 
-
 -- Ejemplo de consulta de las compras realizas
 SELECT 
     F.FacturaID,

@@ -63,6 +63,16 @@ SELECT *
 FROM Clientes
 WHERE Nombre IN ('Luisa Quispe');
 
+/*IS NULL -> Comprueba si un valor es NULL*/
+SELECT *
+FROM Clientes
+WHERE Email IS NULL;
 
+/*IS NULL -> Comprueba si un valor no es NULL*/
+SELECT *
+FROM Clientes
+WHERE Email IS NOT NULL;
 
+SELECT *
+FROM Clientes;
 
