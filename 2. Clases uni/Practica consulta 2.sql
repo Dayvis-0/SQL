@@ -27,5 +27,42 @@ FROM Clientes
 WHERE ClienteID = 1
 	AND NOT ClienteID = 2;
 
+/*BETWEEN -> Comprueba si un valor esta dentro de un rango especifico*/
+SELECT *
+FROM Productos
+WHERE Stock
+BETWEEN 9 AND 19;
+
+SELECT *
+FROM sys.tables;
+SELECT *
+FROM Productos;
+
 /*LIKE -> Busca un patron especifico en una columna. Se utiliza con comodines (% para cero o más 
-caracteres, )*/
+caracteres,)*/
+-- Cientes con nombres que terminan en z
+SELECT *
+FROM Clientes
+WHERE Nombre
+LIKE '%z';
+-- Clientes con nombres que empiecen en a
+SELECT *
+FROM Clientes 
+WHERE Nombre
+LIKE 'a%';
+-- Cliente con nombre que contiene na en su nombre seguido de cualquier caracter
+SELECT *
+FROM Clientes
+WHERE Nombre
+LIKE '%na%';
+
+SELECT * 
+FROM Clientes;
+/*IN -> Comprueba si un valor coincide con alguno de los valores en una lista*/
+SELECT *
+FROM Clientes
+WHERE Nombre IN ('Luisa Quispe');
+
+
+
+
