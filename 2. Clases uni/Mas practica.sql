@@ -63,3 +63,4 @@ FROM dbo.ProductosCategorias1(2);
 
 DROP FUNCTION dbo.EjemploSuma;
 
+
