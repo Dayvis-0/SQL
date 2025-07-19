@@ -31,7 +31,7 @@ FROM DetalleFacturas;
 SELECT Nombre, Email
 FROM Clientes;
 
-SELECT ClienteID, Nombre
+SELECT ClienteID, Nombreasdas
 FROM Clientes WHERE ClienteID = 1;
 
 SELECT DetalleID, FacturaID, PrecioUnitario

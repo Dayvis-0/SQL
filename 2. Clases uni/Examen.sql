@@ -98,9 +98,31 @@ AS
 RETURN (SELECT * FROM Productos WHERE @ProID = ProductoID);
 
 -- 11 Realizar una funcion que permita seleccionar a los vendedores que cuyo nombre empieza con a
+CREATE FUNCTION vendedoreNombre()
+RETURNS TABLE
+AS 
+RETURN (SELECT *
+	FROM Vendedores
+	WHERE Nombre
+	LIKE 'c%'
+);
 
+SELECT *
+FROM dbo.vendedoreNombre();
+
+SELECT * FROM Vendedores;
 -- 12 Realizar una funcion que permita seleccionar el total de productos vendidos
+CREATE FUNCTION totalProductosVendidos()
+RETURNS INT
+AS
+BEGIN 
+	RETURN (
+		SELECT SUM(Cantidad)
+		FROM DetalleFacturas
+	)
+END;
 
+SELECT dbo.totalProductosVendidos();
 
 
 

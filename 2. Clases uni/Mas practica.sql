@@ -3,7 +3,7 @@ CREATE FUNCTION Ejemplosuma(@valor1 int, @valor2 int)
 RETURNS INT 
 AS
 BEGIN 
-	DECLARE @suma int 
+	DECLARE @suma int
 	SET @suma = @valor1 + @valor2
 	RETURN @suma
 END;
@@ -31,7 +31,6 @@ RETURNS TABLE
 AS 
 RETURN (SELECT * FROM Productos WHERE @ProID = ProductoID);
 
-
 SELECT *
 FROM dbo.ProductosConFuncion(2);
 
@@ -46,7 +45,7 @@ RETURN (SELECT
 );
 
 SELECT *
-FROM dbo.ProductosCategorias();
+FROM dbo.ProductosCategorias();	
 
 CREATE FUNCTION ProductosCategorias1(@ID int)
 RETURNS TABLE
