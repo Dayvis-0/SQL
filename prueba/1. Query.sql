@@ -1,4 +1,4 @@
 SELECT * FROM Customers;
 
---ghcvgvcncn
+-- pruebas
 SELECT * FROM Customers WHERE CustomerID < 10;
