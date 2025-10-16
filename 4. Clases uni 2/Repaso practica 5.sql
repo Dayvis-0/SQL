@@ -1,0 +1,78 @@
+CREATE DATABASE FamiliaPractice
+ON PRIMARY ( 
+	NAME = 'familia_data',
+	FILENAME = '/var/opt/mssql/data/familia_data.Mdf',
+	SIZE = 3Mb,
+	MAXSIZE = 30Mb,
+	FILEGROWTH = 5Mb)
+LOG ON (
+	NAME = 'familia_log',
+	FILENAME = '/var/opt/mssql/data/familia_log.Ldf',
+	SIZE = 3Mb,
+	MAXSIZE = 10Mb,
+	FILEGROWTH = 1Mb
+);
+GO
+
+USE FamiliaPractice;
+
+-- TABLA PADRE
+CREATE TABLE TPADRE (
+	ID_PADRE CHAR(4) NOT NULL PRIMARY KEY,
+	DNI CHAR(8),
+	NOMBRE VARCHAR(25),
+	APELLIDO VARCHAR(30),
+	DIRECCION VARCHAR(35),
+	SEXO CHAR(1),
+	SBRUTO MONEY,
+	DSCTO MONEY,
+	SNETO MONEY,
+);
+GO
+
+SELECT * FROM TPADRE;
+
+-- TABLA ESTUDIANTE
+CREATE TABLE TESTUDIANTE (
+	ID_ESTUDIANTE CHAR(4) NOT NULL PRIMARY KEY,
+	ID_PADRE CHAR(4),
+	NOMBRE VARCHAR(25),
+	APELLIDO VARCHAR(35),
+	DIRECCION VARCHAR(35),
+	EDAD INT,
+	SEXO CHAR(1),
+	FOREIGN KEY(ID_PADRE) REFERENCES TPADRE(ID_PADRE)
+);
+GO
+
+SELECT * FROM TESTUDIANTE;
+
+-- INSERTANDO VALORES A TABLA PADRE
+INSERT INTO TPADRE	VALUES('001', '37289878', 'fany', 'achull', 'av.nu�ez', 'F', '2000', '150', '1850');
+INSERT INTO TPADRE	VALUES('002', '15334455', 'zacarias', 'salazar', 'jr.lima', 'M', '1300', '70', '1230');
+INSERT INTO TPADRE	VALUES('003', '04413413', 'alexander', 'saldivar', 'jr.cajamarca', 'M', '1800', '90', '1710');
+INSERT INTO TPADRE	VALUES('004', '03341321', 'nelson', 'rojas', 'av.prado alto', 'M', '2500', '200', '2300');
+INSERT INTO TPADRE	VALUES('005', '02432410', 'nelson', 'salinas', 'av.venezuela', 'M', '1600', '80', '1520');
+INSERT INTO TPADRE	VALUES('006', '04141379', 'fany', 'barreto', 'jr.los pinos', 'F', '3000', '300', '2700');
+INSERT INTO TPADRE	VALUES('007', '47893885', 'jeny', 'aveda�o', 'jr.cusco', 'F', '1500', '200', '1300');
+GO
+
+-- INSERTANDO VALORES A TABLA ESTUDIANTE
+INSERT INTO TESTUDIANTE	VALUES('001', '001', 'oliver', 'panebra', 'av.abancay', 20, 'M');
+INSERT INTO TESTUDIANTE	VALUES('002', '002', 'raul', 'arevalo', 'av.tamburco', 21, 'M');
+INSERT INTO TESTUDIANTE	VALUES('003', '003', 'fernando', 'quispe', 'jr.ecuador', 20, 'M');
+INSERT INTO TESTUDIANTE	VALUES('004', '004', 'federico', 'cuaresma', 'jr.arequipa', 18,'M');
+INSERT INTO TESTUDIANTE	VALUES('005', '005', 'lucia', 'moreano', 'av.fonavi', 17, 'F');
+INSERT INTO TESTUDIANTE	VALUES('006', '006', 'rodolfo', 'perez', 'jr.apurimac', 20, 'M');
+INSERT INTO TESTUDIANTE	VALUES('007', '007', 'gabriel', 'apolino', 'jr.aviacion', 19, 'M');
+GO
+
+/* D) EN AQUELLOS CASOS DONDE SE QUIERE FORZAR LA ELIMINACION DE DUPLICADOS SE 
+INSERTARA LA PALABRA "DISTINCT" DESPUES DE LA CLAUSULA "SELECT"*/
+SELECT NOMBRE FROM TPADRE;
+SELECT DISTINCT NOMBRE AS "NOMBRES SIN DUPLICADOS"
+FROM TPADRE;
+
+
+
+
